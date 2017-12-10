@@ -16,9 +16,9 @@ public class Branch {
     }
 
     //Returns the Branch Sales using all transactions made in the branch
-    public int getBranchSales() {
-        return 0;
-    }
+   // public int getBranchSales() {
+
+   // }
 
     public String getId() {
         return id;

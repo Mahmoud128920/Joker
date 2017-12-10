@@ -2,12 +2,18 @@ package StaffManagementSystem;
 
 import DatabaseManagement.BranchMapper;
 import DatabaseManagement.StaffMapper;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class StoreClerkReportFacade {
+public class StoreClerkReportFacade extends UnicastRemoteObject implements StoreClerkReportFacadeRemoteInterface {
+    
+    StoreClerkReportFacade() throws RemoteException
+    {}
 
     //Retrieves the data that will be displayed in the StoreClerk Report
-    public ArrayList<StoreClerkReportDTO> getReportData() {
+    @Override
+    public ArrayList<StoreClerkReportDTO> getReportData() throws RemoteException{
         //Mappers
         StaffMapper SM = new StaffMapper();
         BranchMapper BM = new BranchMapper();
