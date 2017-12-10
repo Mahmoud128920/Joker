@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class dbtest {
     //IGNORE THIS WAS USED FOR TESTING
-    public static void main(String[] args)
-    {
+   // public static void main(String[] args)
+   // {
         //updateitem details
         //GetItem
         //ItemMapper IM = new ItemMapper();
@@ -27,6 +27,6 @@ public class dbtest {
         //}
         //System.out.print(IM.getItem("ChairCO").get(0).getDescription());
     
-    }
+   // }
     
 }

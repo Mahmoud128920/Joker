@@ -3,6 +3,8 @@ package DatabaseManagement;
 import jokerRMI.StaffMapperRemoteInterface;
 import StaffManagementSystem.Staff;
 import StaffManagementSystem.StoreClerk;
+import StockSystem.ItemQuantity;
+import StockSystem.Transaction;
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
@@ -13,7 +15,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class StaffMapper extends UnicastRemoteObject implements StaffMapperRemoteInterface{
+public class StaffMapper extends UnicastRemoteObject implements StaffMapperRemoteInterface {
 
     private final DBCollection collection;
 
@@ -22,29 +24,29 @@ public class StaffMapper extends UnicastRemoteObject implements StaffMapperRemot
     }
 
     @Override
-    public Staff getManager(String role)
-    {
+    public Staff getManager(String role) {
         Gson gson = new Gson();
         DBObject filter = new BasicDBObject("role", role);
         DBCursor cursor = collection.find(filter);
         DBObject Manage = cursor.one();
         return gson.fromJson(Manage.toString(), Staff.class);
     }
+
     @Override
-    public boolean exists(String username,String password)
-    {
-       //Gson to Convert Json to Java and viceversa
+    public boolean exists(String username, String password) {
+        //Gson to Convert Json to Java and viceversa
         Gson gson = new Gson();
         ArrayList<StoreClerk> staff = new ArrayList<>();
         DBObject filter = new BasicDBObject("username", username);
         DBCursor cursor = collection.find(filter);
-        if(cursor.hasNext())
-        {
-            if(cursor.next().get("password").equals(password))
+        if (cursor.hasNext()) {
+            if (cursor.next().get("password").equals(password)) {
                 return true;
+            }
         }
         return false;
     }
+
     //Returns all staff members working in the specified branch
     @Override
     public ArrayList<StoreClerk> getStaffMember(String branchId) {
@@ -63,16 +65,17 @@ public class StaffMapper extends UnicastRemoteObject implements StaffMapperRemot
     //Returns the Staff member by ID
     @Override
     public StoreClerk getStaffMember(int id) {
-        
+
         Gson gson = new Gson();
         DBObject filter = new BasicDBObject("id", id);
         DBCursor cursor = collection.find(filter);
         DBObject storeclerk = cursor.one();
         return gson.fromJson(storeclerk.toString(), StoreClerk.class);
     }
+
     @Override
-      public StoreClerk getStaffMemberByUsername(String user) {
-        
+    public StoreClerk getStaffMemberByUsername(String user) {
+
         Gson gson = new Gson();
         DBObject filter = new BasicDBObject("username", user);
         DBCursor cursor = collection.find(filter);
@@ -104,12 +107,31 @@ public class StaffMapper extends UnicastRemoteObject implements StaffMapperRemot
         collection.insert(DBO);
         return true;
     }
+        //Returns the total profit gained by a Storeclerk by calculating all transactions
+    //performed by him
+    public int getClerkProfit(StoreClerk sc) {
+        
+        int profit=0;
+        
+        TransactionMapper TM = new TransactionMapper();
+        ArrayList<Transaction> transactions = 
+                TM.getTransactionForStoreClerk(sc.getId());
+        
+        for(int i=0;i<transactions.size();i++)
+        {
+            for (ItemQuantity item : transactions.get(i).getItems()) {
+                
+                profit+=item.item.getPrice()*item.Quantity;
+            }
+        }
+        return profit;
+        
+    }
 
     //Removes a Staff member from the DB, returns true if the operation succedes
     // public boolean removeStaff(Staff staff) {
     //    return true;
     //}
-
     //Updates the staff member details , uses the ID of the given staff member
     //Returns True if the operation works.
     @Override
