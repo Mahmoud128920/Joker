@@ -7,17 +7,20 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class ClientMapper {
+public class ClientMapper extends UnicastRemoteObject implements ClientMapperRemoteInterface{
 
     private final DBCollection collection;
 
-    public ClientMapper() {
+    public ClientMapper() throws RemoteException {
         collection = DatabaseClient.getDatabase().getCollection("Client");
     }
 
     //Returns all Client with the specified name
+    @Override
     public ArrayList<Client> getClient(String name) {
         //Gson to Convert Json to Java and viceversa
         Gson gson = new Gson();
@@ -38,6 +41,7 @@ public class ClientMapper {
     }
 
     //Returns a CLient by ID
+    @Override
     public Client getClient(int id) {
         Gson gson = new Gson();
         DBObject filter = new BasicDBObject("id", id);
@@ -47,6 +51,7 @@ public class ClientMapper {
     }
 
     //Returns All Clients
+    @Override
     public ArrayList<Client> getClient() {
 
         ArrayList<Client> clients = new ArrayList<>();
@@ -62,6 +67,7 @@ public class ClientMapper {
 
     //inserts a new client into the database, returns true if the operation
     //succedes
+    @Override
     public boolean insertNewClient(Client client) {
         Gson gson = new Gson();
         String json = gson.toJson(client);
@@ -76,6 +82,7 @@ public class ClientMapper {
     //}
     //Updates the client Details with the CLient C. Retrieves the Client by the
     //ID
+    @Override
     public boolean updateClient(Client C) {
         Gson gson = new Gson();
         String json = gson.toJson(C);

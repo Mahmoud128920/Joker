@@ -9,14 +9,14 @@ import StockSystem.Item;
 import java.util.ArrayList;
 
 public class dbtest {
-    
+    //IGNORE THIS WAS USED FOR TESTING
     public static void main(String[] args)
     {
         //updateitem details
         //GetItem
-        ItemMapper IM = new ItemMapper();
-        IM.insertItem(new Item("Chair","A Chair","ChairCO",40,30,0,2));
-        IM.updateItemDetails(new Item("Chair","A Chair that is really good","ChairCO",40,30,0,2));
+        //ItemMapper IM = new ItemMapper();
+        //IM.insertItem(new Item("Chair","A Chair","ChairCO",40,30,0,2));
+        //IM.updateItemDetails(new Item("Chair","A Chair that is really good","ChairCO",40,30,0,2));
         //IM.removeItem(new Item("Chair","A Chair","ChairCO",40,30,0,2));
        // IM.insertItem(new Item("Chair","A Chair","ChairCO",40,30,0,2));
        // ArrayList<Item> items =IM.getItem();
@@ -25,7 +25,7 @@ public class dbtest {
         //{
          //   System.out.print(items.get(i).getDescription());
         //}
-        System.out.print(IM.getItem("ChairCO").get(0).getDescription());
+        //System.out.print(IM.getItem("ChairCO").get(0).getDescription());
     
     }
     

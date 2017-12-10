@@ -9,18 +9,30 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import org.bson.conversions.Bson;
 
-public class ItemMapper {
+public class ItemMapper extends UnicastRemoteObject implements ItemMapperRemoteInterface{
 
     private final DBCollection collection;
 
-    public ItemMapper() {
+    public ItemMapper() throws RemoteException {
 
         collection = DatabaseClient.getDatabase().getCollection("Item");
     }
+    
+    //Function to automate id increase in DB
+    //public String totalitemcount()
+   // {
+   //            Gson gson = new Gson();
+   //     DBObject filter = new BasicDBObject("id", 1);
+   //     DBCursor cursor = collection.find(filter);
+   //     return gson.cursor.next().get("count");
+   // }
 
     //Returns all items belonging to the Manufacturer
+    @Override
     public ArrayList<Item> getItem(String manufacturerName) {
         //Gson to Convert Json to Java and viceversa
         Gson gson = new Gson();
@@ -39,6 +51,7 @@ public class ItemMapper {
     }
 
     //Returns the item by ID
+    @Override
     public Item getItem(int id) {
         Gson gson = new Gson();
         //Filter to get item by ID
@@ -51,6 +64,7 @@ public class ItemMapper {
     }
 
     //Returns all Items
+    @Override
     public ArrayList<Item> getItem() {
         ArrayList<Item> items = new ArrayList<>();
         Gson gson = new Gson();
@@ -64,6 +78,7 @@ public class ItemMapper {
     }
 
     //Changes the item's stock quantity to the specified amount.
+    @Override
     public boolean updateStock(int itemid, int amount) {
         //Filter to select the item with the Item ID
         DBObject filter = new BasicDBObject("id", itemid);
@@ -77,6 +92,7 @@ public class ItemMapper {
     }
 
     //Inserts an Item into the Database
+    @Override
     public boolean insertItem(Item item) {
         Gson gson = new Gson();
         String json = gson.toJson(item);
@@ -86,6 +102,7 @@ public class ItemMapper {
     }
 
     //Removes an item from the Database
+    @Override
     public boolean removeItem(Item item) {
         Gson gson = new Gson();
         String json = gson.toJson(item);
@@ -95,6 +112,7 @@ public class ItemMapper {
     }
 
     //Updates an Item's details, Item ID is used to find the Item in the DB.
+    @Override
     public boolean updateItemDetails(Item item) {
         Gson gson = new Gson();
         String json = gson.toJson(item);

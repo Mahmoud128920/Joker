@@ -8,13 +8,15 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class ManufacturerMapper {
+public class ManufacturerMapper extends UnicastRemoteObject implements ManufacturerMapperRemoteInterface{
 
     private final DBCollection collection;
 
-    public ManufacturerMapper() {
+    public ManufacturerMapper() throws RemoteException{
         collection = DatabaseClient.getDatabase().getCollection("Manufacturer");
 
     }
@@ -22,6 +24,7 @@ public class ManufacturerMapper {
     
 
     //Returns the manufacturer with the specified name
+    @Override
     public Manufacturer getManufacturer(String name) {
         
         Gson gson = new Gson();
@@ -32,6 +35,7 @@ public class ManufacturerMapper {
     }
 
     //Returns all Manufacturers
+    @Override
     public ArrayList<Manufacturer> getManufacturer() {
         
         ArrayList<Manufacturer> manufacturer = new ArrayList<>();
@@ -50,6 +54,7 @@ public class ManufacturerMapper {
     }
 
     //Inserts a new manufacturer into the Database
+    @Override
     public boolean insertManufacturer(Manufacturer manufacturer) {
         Gson gson = new Gson();
         String json = gson.toJson(manufacturer);
@@ -59,6 +64,7 @@ public class ManufacturerMapper {
     }
 
     //Updates the manufacturer's details. Uses the ID to find the Manufacturer
+    @Override
     public boolean updateManufacturer(Manufacturer manufacturer) {
         Gson gson = new Gson();
         String json = gson.toJson(manufacturer);
