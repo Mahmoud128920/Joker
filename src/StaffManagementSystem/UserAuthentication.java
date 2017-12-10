@@ -1,6 +1,7 @@
 
 package StaffManagementSystem;
 
+import jokerRMI.UserAuthenticationRemoteInterface;
 import DatabaseManagement.StaffMapper;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
