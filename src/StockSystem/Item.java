@@ -15,7 +15,8 @@ public class Item {
     public Item() {
     }
 
-    public Item(String name, String description, String manufacturerName, int price, int buyingPrice, int stock, int id) {
+    public Item(String name, String description, String manufacturerName,
+            int price, int buyingPrice, int stock, int id) {
         this.name = name;
         this.description = description;
         this.manufacturerName = manufacturerName;
@@ -29,14 +30,14 @@ public class Item {
     //with the item.
     public int calculateItemExpense() {
         TransactionMapper TM = new TransactionMapper();
-        return TM.getTransaction(this).size() + stock * buyingPrice;
+        return TM.getTransactionForItem(this.id).size() + stock * buyingPrice;
     }
 
     //Calulates the profit of the item, which is price*#ofTransactions with the
     //item
     public int calculateItemProfit() {
         TransactionMapper TM = new TransactionMapper();
-        return TM.getTransaction(this).size() * price;
+        return TM.getTransactionForItem(this.id).size() * price;
     }
 
     //Calculates the net profit. ItemProfit-ItemExpense.

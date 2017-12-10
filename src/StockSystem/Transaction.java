@@ -1,34 +1,42 @@
 package StockSystem;
 
-import StaffManagementSystem.StoreClerk;
+
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Transaction {
 
-    private Client client;
+    private int clientID;
     private Date date;
     private int id;
     private ArrayList<ItemQuantity> items;
-    private StoreClerk storeclerk;
+    private int storeClerkID;
 
     public Transaction() {
     }
 
-    public Transaction(Client client, Date date, int id, ArrayList<ItemQuantity> items, StoreClerk storeclerk) {
-        this.client = client;
+    public Transaction(int clientID, Date date, int id, ArrayList<ItemQuantity> items, int storeclerkID) {
+        this.clientID = clientID;
         this.date = date;
         this.id = id;
         this.items = items;
-        this.storeclerk = storeclerk;
+        this.storeClerkID = storeclerkID;
     }
 
-    public Client getClient() {
-        return client;
+    public int getClientID() {
+        return clientID;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClientID(int clientID) {
+        this.clientID = clientID;
+    }
+
+    public int getStoreClerkID() {
+        return storeClerkID;
+    }
+
+    public void setStoreClerkID(int storeClerkID) {
+        this.storeClerkID = storeClerkID;
     }
 
     public Date getDate() {
@@ -53,14 +61,6 @@ public class Transaction {
 
     public void setItems(ArrayList<ItemQuantity> items) {
         this.items = items;
-    }
-
-    public StoreClerk getStoreclerk() {
-        return storeclerk;
-    }
-
-    public void setStoreclerk(StoreClerk storeclerk) {
-        this.storeclerk = storeclerk;
     }
 
 }
