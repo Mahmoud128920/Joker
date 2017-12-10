@@ -27,7 +27,7 @@ public class StoreClerkReportFacade extends UnicastRemoteObject implements Store
         for (int i = 0; i < storeClerks.size(); i++) {
             dto = new StoreClerkReportDTO(storeClerks.get(i).getBranchId(),
                     BM.getBranch(storeClerks.get(i).getBranchId()).getLocation(),
-                    storeClerks.get(i).getClerkProfit(),
+                    SM.getClerkProfit(storeClerks.get(i)),
                     storeClerks.get(i).getName());
 
             Dto.add(dto);

@@ -6,7 +6,8 @@ import DatabaseManagement.StaffMapper;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class UserAuthentication extends UnicastRemoteObject implements UserAuthenticationRemoteInterface
+public class UserAuthentication extends UnicastRemoteObject
+        implements UserAuthenticationRemoteInterface
 {
     UserAuthentication()throws RemoteException
     {
@@ -30,9 +31,9 @@ public class UserAuthentication extends UnicastRemoteObject implements UserAuthe
     }
 
     //Logs out of the System
-    @Override
-    public void Logout() {
+    //@Override
+   // public void Logout() {
 
-    }
+    //}
     
 }
