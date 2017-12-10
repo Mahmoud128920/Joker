@@ -1,5 +1,6 @@
 package StockSystem;
 
+import jokerRMI.ItemReportFacadeRemoteInterface;
 import DatabaseManagement.ItemMapper;
 import DatabaseManagement.ManufacturerMapper;
 import java.rmi.RemoteException;

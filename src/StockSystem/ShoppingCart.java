@@ -1,5 +1,6 @@
 package StockSystem;
 
+import jokerRMI.ShoppingCartRemoteInterface;
 import DatabaseManagement.TransactionMapper;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
