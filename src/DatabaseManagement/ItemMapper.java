@@ -1,5 +1,6 @@
 package DatabaseManagement;
 
+import jokerRMI.ItemMapperRemoteInterface;
 import StockSystem.Item;
 import com.mongodb.DBCollection;
 import java.util.ArrayList;
