@@ -12,6 +12,7 @@ public class CreditPayment implements Payment
     
     private boolean creditPay(int amount)        
     {
+        //Assume it interacts with another system to pay
         return true;
     }
     

@@ -2,13 +2,22 @@ package StockSystem;
 
 import DatabaseManagement.ItemMapper;
 import DatabaseManagement.ManufacturerMapper;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class ItemReportFacade {
+public class ItemReportFacade extends UnicastRemoteObject implements ItemReportFacadeRemoteInterface {
 
-    private ArrayList<ItemReportDTO> getReportData() {
+    ItemReportFacade() throws RemoteException {
+
+    }
+
+    @Override
+    public ArrayList<ItemReportDTO> getReportData() throws RemoteException {
         //Mappers
+
         ItemMapper IM = new ItemMapper();
+
         ManufacturerMapper MM = new ManufacturerMapper();
         //Get All the Items from DB
         ArrayList<Item> items = IM.getItem();

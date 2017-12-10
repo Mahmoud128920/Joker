@@ -12,6 +12,7 @@ public class CashPayment implements Payment
     
     private boolean cashPay(int amount)        
     {
+        //Assume system interacts with another payment system
         return true;
     }
     
