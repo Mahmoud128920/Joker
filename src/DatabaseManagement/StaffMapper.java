@@ -1,6 +1,5 @@
 package DatabaseManagement;
 
-import jokerRMI.StaffMapperRemoteInterface;
 import StaffManagementSystem.Staff;
 import StaffManagementSystem.StoreClerk;
 import StockSystem.ItemQuantity;

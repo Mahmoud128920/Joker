@@ -2,8 +2,6 @@ package StockSystem;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import jokerRMI.ItemReportFacadeRemoteInterface;
-import jokerRMI.ShoppingCartRemoteInterface;
 
 public class StockServer {
 

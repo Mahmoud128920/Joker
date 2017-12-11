@@ -7,10 +7,6 @@ package DatabaseManagement;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import jokerRMI.ClientMapperRemoteInterface;
-import jokerRMI.ItemMapperRemoteInterface;
-import jokerRMI.ManufacturerMapperRemoteInterface;
-import jokerRMI.StaffMapperRemoteInterface;
 
 /**
  *

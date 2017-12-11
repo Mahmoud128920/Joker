@@ -1,4 +1,4 @@
-package jokerRMI;
+package DatabaseManagement;
 
 import StockSystem.Client;
 import java.rmi.Remote;

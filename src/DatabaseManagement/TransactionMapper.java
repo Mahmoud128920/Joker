@@ -8,7 +8,10 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
+import java.rmi.RemoteException;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TransactionMapper {
 
@@ -26,6 +29,15 @@ public class TransactionMapper {
         DBObject DBO = (DBObject) JSON.parse(json);
         collection.insert(DBO);
         return true;
+    }
+        public void checkoutItems(int Client_ID, int Storeclerk_ID) throws RemoteException {
+            
+            ClientMapper CM = new ClientMapper();
+
+        int transactionid = 3;
+        TransactionMapper TM = new TransactionMapper();
+        TM.insertTransaction(new Transaction(Client_ID, Date.from(Instant.MIN),
+                transactionid, CM.getClient(Client_ID).getShoppingCart().getItems(), Storeclerk_ID));
     }
 
     //Returns a transaction by ID

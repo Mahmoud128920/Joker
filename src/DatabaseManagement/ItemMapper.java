@@ -1,6 +1,5 @@
 package DatabaseManagement;
 
-import jokerRMI.ItemMapperRemoteInterface;
 import StockSystem.Item;
 import com.mongodb.DBCollection;
 import java.util.ArrayList;
@@ -49,6 +48,26 @@ public class ItemMapper extends UnicastRemoteObject implements ItemMapperRemoteI
         }
         //return the items
         return items;
+    }
+    
+        //Calculates the Expense of the item, which is buyingPrice*#ofTransactions
+    //with the item.
+    public int calculateItemExpense(Item it) {
+        TransactionMapper TM = new TransactionMapper();
+        return TM.getTransactionForItem(it.getId()).size() + it.getStock() * it.getBuyingPrice();
+    }
+
+    //Calulates the profit of the item, which is price*#ofTransactions with the
+    //item
+    public int calculateItemProfit(Item it) {
+        TransactionMapper TM = new TransactionMapper();
+        return TM.getTransactionForItem(it.getId()).size() * it.getPrice();
+    }
+
+    //Calculates the net profit. ItemProfit-ItemExpense.
+    public int calculateItemNetProfit(Item it) throws RemoteException {
+        ItemMapper IM = new ItemMapper();
+        return IM.calculateItemProfit(it) + IM.calculateItemExpense(it);
     }
 
     //Returns the item by ID

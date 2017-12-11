@@ -1,12 +1,10 @@
 package StockSystem;
 
-import jokerRMI.ShoppingCartRemoteInterface;
-import DatabaseManagement.TransactionMapper;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 public class ShoppingCart extends UnicastRemoteObject implements ShoppingCartRemoteInterface {
 
@@ -24,16 +22,6 @@ public class ShoppingCart extends UnicastRemoteObject implements ShoppingCartRem
         items.add(new ItemQuantity(item, quantity));
     }
 
-    //WORK IN PROGRESS
-    //Checks out items and creates a transaction
-    @Override
-    public void checkoutItems(int Client_ID, int Storeclerk_ID) {
-
-        int transactionid = 3;
-        TransactionMapper TM = new TransactionMapper();
-        TM.insertTransaction(new Transaction(Client_ID, Date.from(Instant.MIN),
-                transactionid, this.items, Storeclerk_ID));
-    }
 
     //WORK IN PROGRESS
     //changes the quantity of the an item in the shopping cart
@@ -49,7 +37,7 @@ public class ShoppingCart extends UnicastRemoteObject implements ShoppingCartRem
 
     //Removes the item from the shopping cart.
     @Override
-    public void removeItem(Item item) {
+    public void removeItem(ItemQuantity item) {
        // for (int i = 0; i < items.size(); i++) {
         //    if (items.get(i).item.equals(item)) {
        //         items.remove(i)
@@ -63,5 +51,15 @@ public class ShoppingCart extends UnicastRemoteObject implements ShoppingCartRem
     public void setPayment(Payment paymentmethod) {
         this.payment = paymentmethod;
     }
+
+    public ArrayList<ItemQuantity> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<ItemQuantity> items) {
+        this.items = items;
+    }
+    
+    
 
 }

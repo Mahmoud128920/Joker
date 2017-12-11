@@ -1,7 +1,6 @@
 package DatabaseManagement;
 
 
-import jokerRMI.ManufacturerMapperRemoteInterface;
 import StockSystem.Manufacturer;
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;

@@ -7,8 +7,6 @@ package StaffManagementSystem;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import jokerRMI.StoreClerkReportFacadeRemoteInterface;
-import jokerRMI.UserAuthenticationRemoteInterface;
 
 /**
  *
@@ -36,6 +34,7 @@ public class SMServer {
 
             Reg.bind("StoreClerkReport", StoreClerkReport);
             System.out.println("StoreClerk Report RemoteInterface added to registry");
+            
         } catch (Exception ex) {
             System.out.printf(ex.getMessage());
         }

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jokerRMI;
+package StaffManagementSystem;
 
-import StockSystem.ItemReportDTO;
+import StaffManagementSystem.StoreClerkReportDTO;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -14,8 +14,8 @@ import java.util.ArrayList;
  *
  * @author Mahmoud
  */
-public interface ItemReportFacadeRemoteInterface extends Remote{
+public interface StoreClerkReportFacadeRemoteInterface extends Remote{
     
-        public ArrayList<ItemReportDTO> getReportData() throws RemoteException;
+        public ArrayList<StoreClerkReportDTO> getReportData() throws RemoteException;
     
 }
